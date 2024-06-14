@@ -1,0 +1,1323 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/23/2024 3:21:32 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-IRM7JJB"
+  DTS:CreatorName="DESKTOP-IRM7JJB\Toshiba"
+  DTS:DTSID="{D7F0E49E-5862-4939-BB41-2FA0E0CE84F4}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{7571C4C4-912C-49F8-B17A-7CC8CB0711D2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{44847ADD-FC46-4E1D-A961-EA5CB90F112F}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::Ruta]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Toshiba\Documents\IntegrationServices\Fase2_DataFlow\DerivedColumn-ColumnaDerivada_Row CountRecuentoFila\Ventas Video Juegos CH13.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.STREAMING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F026A866-FAB9-42B8-88C7-16D67CC12221}"
+      DTS:ObjectName="LocalHost.STREAMING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=STREAMING;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{F026A866-FAB9-42B8-88C7-16D67CC12221}LocalHost.STREAMING;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7F34A7C4-0379-4FD7-8043-386B29E2DE16}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Cantidad">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D9AB8726-2077-4ED8-AC63-BA9C21DADA7A}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="SUBSTRING( @[User::Ruta], 135, 4)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CodArchivo">
+      <DTS:VariableValue
+        DTS:DataType="8">CH13</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4A468C31-4B3C-40C2-B3B7-2DACEEB13BB9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Ruta">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\Toshiba\Documents\IntegrationServices\Fase2_DataFlow\DerivedColumn-ColumnaDerivada_Row CountRecuentoFila\Ventas Video Juegos CH13.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{71169ec9-b796-414e-ae4d-3c963b83c105}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F026A866-FAB9-42B8-88C7-16D67CC12221}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [STREAMING].[dbo].[VideoJuegos]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container Carga Bucle VideoJuegos"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{F83A096B-D1B1-4E14-AF4B-B1C4E4A00356}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container Carga Bucle VideoJuegos">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{34DDC21B-8165-41D9-8402-7B305A271E20}"
+        DTS:ObjectName="{34DDC21B-8165-41D9-8402-7B305A271E20}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Users\Toshiba\Documents\IntegrationServices\Fase2_DataFlow\DerivedColumn-ColumnaDerivada_Row CountRecuentoFila" />
+            <FEFEProperty
+              FileSpec="Ventas Video Juegos*.xls*" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Execute SQL Actualizar cantidad"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{57FFCCB6-CF57-466F-B6B6-4EFD828E489A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Actualizar cantidad"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F026A866-FAB9-42B8-88C7-16D67CC12221}"
+              SQLTask:SqlStatementSource="UPDATE [VideoJuegos]&#xA;  SET Cantidad_Registro = ?&#xA;  WHERE Cod_Archivo = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::Cantidad"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::CodArchivo"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
+          DTS:Description="Tarea Flujo de datos"
+          DTS:DTSID="{9A0324C2-FB21-4BA5-8358-F311EAA00259}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Tarea Flujo de datos"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+                  description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+                  name="Columna derivada"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Inputs[Entrada de columna derivada]"
+                      description="Entrada en la transformación Columna derivada"
+                      name="Entrada de columna derivada">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Inputs[Entrada de columna derivada].Columns[Pais]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Pais"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Pais]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">#{Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Pais]} == "Spain" ? "España" : #{Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Pais]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">Pais == "Spain" ? "España" : Pais</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de columna derivada]"
+                      description="Salida predeterminada de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      name="Salida de columna derivada"
+                      synchronousInputId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Inputs[Entrada de columna derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de columna derivada].Columns[CodArchivo]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          length="4"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de columna derivada].Columns[CodArchivo]"
+                          name="CodArchivo"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">@[User::CodArchivo]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::CodArchivo]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de columna derivada].Columns[Cantidad]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Cálculo"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de columna derivada].Columns[Cantidad]"
+                          name="Cantidad"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión de columna derivada"
+                              name="Expression">@[User::Cantidad]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expresión descriptiva de columna derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::Cantidad]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de error de columna derivada]"
+                      description="Salida de error de la transformación Columna derivada"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de columna derivada"
+                      synchronousInputId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Inputs[Entrada de columna derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+                  description="Conversión de datos"
+                  name="Conversión de datos"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                      name="Entrada de conversión de datos">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Nombres]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Nombres"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Nombres]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Anio]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Anio"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Anio]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Edad]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Edad"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Edad]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Plataforma]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Plataforma"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Plataforma]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Juego]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Juego"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Juego]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Pais]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Pais"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Pais]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[CodArchivo]"
+                          cachedDataType="wstr"
+                          cachedLength="4"
+                          cachedName="CodArchivo"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de columna derivada].Columns[CodArchivo]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Cantidad]"
+                          cachedDataType="i4"
+                          cachedName="Cantidad"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de columna derivada].Columns[Cantidad]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos]"
+                      exclusionGroup="1"
+                      name="Salida de conversión de datos"
+                      synchronousInputId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombres]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombres]"
+                          name="Copy of Nombres"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Nombres]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Anio]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="4"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Anio]"
+                          name="Copy of Anio"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Anio]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Edad]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="2"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Edad]"
+                          name="Copy of Edad"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Edad]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Plataforma]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Plataforma]"
+                          name="Copy of Plataforma"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Plataforma]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Juego]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Juego]"
+                          name="Copy of Juego"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Juego]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Pais]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Pais]"
+                          name="Copy of Pais"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Pais]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of CodArchivo]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="4"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of CodArchivo]"
+                          name="Copy of CodArchivo"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de columna derivada].Columns[CodArchivo]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Cantidad]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Cantidad]"
+                          name="Copy of Cantidad"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de columna derivada].Columns[Cantidad]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de conversión de datos"
+                      synchronousInputId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino de OLE DB"
+                  name="Destino de OLE DB"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset">[dbo].[VideoJuegos]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.STREAMING]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.STREAMING]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                      errorOrTruncationOperation="Insertar"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de destino de OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copy of Nombres]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="Copy of Nombres"
+                          externalMetadataColumnId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombres]"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombres]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copy of Edad]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="2"
+                          cachedName="Copy of Edad"
+                          externalMetadataColumnId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Edad]"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Edad]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copy of Plataforma]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Plataforma"
+                          externalMetadataColumnId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Plataforma]"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Plataforma]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copy of Juego]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="Copy of Juego"
+                          externalMetadataColumnId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Juego]"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Juego]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copy of Pais]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Pais"
+                          externalMetadataColumnId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pais]"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Pais]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Cantidad]"
+                          cachedDataType="i4"
+                          cachedName="Cantidad"
+                          externalMetadataColumnId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cantidad_Registro]"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de columna derivada].Columns[Cantidad]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copy of CodArchivo]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="4"
+                          cachedName="Copy of CodArchivo"
+                          externalMetadataColumnId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cod_Archivo]"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of CodArchivo]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cod_Archivo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="Cod_Archivo" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombres]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="Nombres" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Año]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="Año" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Edad]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="Edad" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Plataforma]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Plataforma" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Juego]"
+                          codePage="1252"
+                          dataType="text"
+                          name="Juego" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Pais]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Pais" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Cantidad_Registro]"
+                          dataType="i4"
+                          name="Cantidad_Registro" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de destino de OLE DB"
+                      synchronousInputId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+                  description="Origen de Excel"
+                  name="Origen de Excel"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset">'Ventas Video Juegos$'</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="Variable que contiene el comando SQL para ejecutar."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="La asignación de parámetros del comando SQL a variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel]"
+                      name="Salida de origen de Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Nombres]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Nombres]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Nombres]"
+                          name="Nombres"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Anio]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Anio]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Anio]"
+                          name="Anio"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Edad]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Edad]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Edad]"
+                          name="Edad"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Plataforma]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Plataforma]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Plataforma]"
+                          name="Plataforma"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Juego]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Juego]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Juego]"
+                          name="Juego"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Pais]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Pais]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Pais]"
+                          name="Pais"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Nombres]"
+                          dataType="wstr"
+                          length="255"
+                          name="Nombres" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Anio]"
+                          dataType="wstr"
+                          length="255"
+                          name="Anio" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Edad]"
+                          dataType="wstr"
+                          length="255"
+                          name="Edad" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Plataforma]"
+                          dataType="wstr"
+                          length="255"
+                          name="Plataforma" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Juego]"
+                          dataType="wstr"
+                          length="255"
+                          name="Juego" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Pais]"
+                          dataType="wstr"
+                          length="255"
+                          name="Pais" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel]"
+                      isErrorOut="true"
+                      name="Salida de error de origen de Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Nombres]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Nombres]"
+                          name="Nombres" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Anio]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Anio]"
+                          name="Anio" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Edad]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Edad]"
+                          name="Edad" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Plataforma]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Plataforma]"
+                          name="Plataforma" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Juego]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Juego]"
+                          name="Juego" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Pais]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Pais]"
+                          name="Pais" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Recuento de filas"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Recuento de filas;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+                  description="Cuenta las filas a medida que pasan por un flujo de datos. Por ejemplo, se usa el número de filas procesadas para determinar si deben o no realizarse operaciones de limpieza o actualizar el texto de un mensaje de correo electrónico para comunicar el estado de procesamiento."
+                  name="Recuento de filas">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el recuento de filas."
+                      name="VariableName">User::Cantidad</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Recuento de filas.Inputs[Entrada de Recuento de filas 1]"
+                      hasSideEffects="true"
+                      name="Entrada de Recuento de filas 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Recuento de filas.Outputs[Salida de Recuento de filas 1]"
+                      name="Salida de Recuento de filas 1"
+                      synchronousInputId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Recuento de filas.Inputs[Entrada de Recuento de filas 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos.Paths[Salida de columna derivada]"
+                  endId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Salida de columna derivada"
+                  startId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Outputs[Salida de columna derivada]" />
+                <path
+                  refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos.Paths[Salida de conversión de datos]"
+                  endId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                  name="Salida de conversión de datos"
+                  startId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos]" />
+                <path
+                  refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos.Paths[Salida de origen de Excel]"
+                  endId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Recuento de filas.Inputs[Entrada de Recuento de filas 1]"
+                  name="Salida de origen de Excel"
+                  startId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel.Outputs[Salida de origen de Excel]" />
+                <path
+                  refId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos.Paths[Salida de Recuento de filas 1]"
+                  endId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada.Inputs[Entrada de columna derivada]"
+                  name="Salida de Recuento de filas 1"
+                  startId="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Recuento de filas.Outputs[Salida de Recuento de filas 1]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container Carga Bucle VideoJuegos.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{954ED51C-A9FA-447E-BB30-D3DCEC77FB7F}"
+          DTS:From="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Foreach Loop Container Carga Bucle VideoJuegos\Execute SQL Actualizar cantidad" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{93E5336F-94D8-4D60-9E9C-8617087C709C}"
+          DTS:ObjectName="{93E5336F-94D8-4D60-9E9C-8617087C709C}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::Ruta" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{904E5DCF-7998-4D2E-827E-012F3673BC1C}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Foreach Loop Container Carga Bucle VideoJuegos" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="345,52" />
+        <NodeLayout
+          Size="240,42"
+          Id="Package\Foreach Loop Container Carga Bucle VideoJuegos\Execute SQL Actualizar cantidad"
+          TopLeft="39,132" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos"
+          TopLeft="56,27" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container Carga Bucle VideoJuegos.PrecedenceConstraints[Constraint 1]"
+          TopLeft="146,69">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13,63"
+              Start="0,0"
+              End="13,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.5"
+                    Point2="0,31.5"
+                    Point3="4,31.5" />
+                  <mssgle:LineSegment
+                    End="9,31.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9,31.5"
+                    Point2="13,31.5"
+                    Point3="13,35.5" />
+                  <mssgle:LineSegment
+                    End="13,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="313,229"
+          Size="313,272"
+          Id="Package\Foreach Loop Container Carga Bucle VideoJuegos"
+          TopLeft="271,150" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="428.75,94">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel"
+          TopLeft="266,9" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Conversión de datos"
+          TopLeft="304,200" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Recuento de filas"
+          TopLeft="443,53" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Columna derivada"
+          TopLeft="267,117" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB"
+          TopLeft="324,271" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos.Paths[Salida de Recuento de filas 1]"
+          TopLeft="443,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-92,43"
+              Start="0,0"
+              End="-92,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-88,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-88,0"
+                    Point2="-92,0"
+                    Point3="-92,4" />
+                  <mssgle:LineSegment
+                    End="-92,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos.Paths[Salida de origen de Excel]"
+          TopLeft="423,30">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="102,23"
+              Start="0,0"
+              End="102,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="98,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="98,0"
+                    Point2="102,0"
+                    Point3="102,4" />
+                  <mssgle:LineSegment
+                    End="102,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos.Paths[Salida de conversión de datos]"
+          TopLeft="394,242">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="17.5,29"
+              Start="0,0"
+              End="17.5,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5"
+                    Point2="0,14.5"
+                    Point3="4,14.5" />
+                  <mssgle:LineSegment
+                    End="13.5,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="13.5,14.5"
+                    Point2="17.5,14.5"
+                    Point3="17.5,18.5" />
+                  <mssgle:LineSegment
+                    End="17.5,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos.Paths[Salida de columna derivada]"
+          TopLeft="351,159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43,41"
+              Start="0,0"
+              End="43,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5"
+                    Point2="0,20.5"
+                    Point3="4,20.5" />
+                  <mssgle:LineSegment
+                    End="39,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39,20.5"
+                    Point2="43,20.5"
+                    Point3="43,24.5" />
+                  <mssgle:LineSegment
+                    End="43,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container Carga Bucle VideoJuegos\Tarea Flujo de datos\Origen de Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

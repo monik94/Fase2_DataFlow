@@ -1,0 +1,1069 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/14/2024 9:06:48 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-IRM7JJB"
+  DTS:CreatorName="DESKTOP-IRM7JJB\Toshiba"
+  DTS:DTSID="{59A30C2B-3B7B-44DE-B9BF-DF763BC27423}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="14_Audit_CopyColumn"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{332DEC0A-AD3C-408D-92C9-F70434F8FBEE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.AdventureWorksDW2016]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4B95F52C-B3C3-4936-AB01-66A57D2FBC67}"
+      DTS:ObjectName="LocalHost.AdventureWorksDW2016">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=AdventureWorksDW2016;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-14_Audit_CopyColumn-{4B95F52C-B3C3-4936-AB01-66A57D2FBC67}LocalHost.AdventureWorksDW2016;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.STREAMING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{80E53F76-16AD-4B80-BA39-3A0BD416480E}"
+      DTS:ObjectName="LocalHost.STREAMING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=STREAMING;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-14_Audit_CopyColumn-{80E53F76-16AD-4B80-BA39-3A0BD416480E}LocalHost.STREAMING;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Auditar y copiar columna Tarea Flujo de datos"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{E5307D75-86EB-439E-AD3D-80BF9BED0363}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Auditar y copiar columna Tarea Flujo de datos"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar"
+              componentClassID="Microsoft.Lineage"
+              contactInfo="Auditar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Incluye datos sobre el entorno en el que se ejecuta el paquete. Asigna variables del sistema a las nuevas columnas de salida. Por ejemplo, se agrega el nombre del equipo y del operador al flujo de datos."
+              name="Auditar">
+              <inputs>
+                <input
+                  refId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Inputs[Entrada de Auditar 1]"
+                  name="Entrada de Auditar 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1]"
+                  exclusionGroup="1"
+                  name="Salida de Auditar 1"
+                  synchronousInputId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Inputs[Entrada de Auditar 1]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre del paquete]"
+                      dataType="wstr"
+                      length="64"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre del paquete]"
+                      name="Nombre del paquete">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el elemento de auditoría que produce esta columna."
+                          name="LineageItemSelected"
+                          typeConverter="LineageItemSelected">2</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Hora de inicio de ejecución]"
+                      dataType="date"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Hora de inicio de ejecución]"
+                      name="Hora de inicio de ejecución">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el elemento de auditoría que produce esta columna."
+                          name="LineageItemSelected"
+                          typeConverter="LineageItemSelected">4</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre de máquina]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre de máquina]"
+                      name="Nombre de máquina">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el elemento de auditoría que produce esta columna."
+                          name="LineageItemSelected"
+                          typeConverter="LineageItemSelected">5</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre de usuario]"
+                      dataType="wstr"
+                      length="64"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre de usuario]"
+                      name="Nombre de usuario">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el elemento de auditoría que produce esta columna."
+                          name="LineageItemSelected"
+                          typeConverter="LineageItemSelected">6</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre de tarea]"
+                      dataType="wstr"
+                      length="64"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre de tarea]"
+                      name="Nombre de tarea">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el elemento de auditoría que produce esta columna."
+                          name="LineageItemSelected"
+                          typeConverter="LineageItemSelected">7</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Nombre del paquete]"
+                      cachedDataType="wstr"
+                      cachedLength="64"
+                      cachedName="Nombre del paquete"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre del paquete]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Hora de inicio de ejecución]"
+                      cachedDataType="date"
+                      cachedName="Hora de inicio de ejecución"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Hora de inicio de ejecución]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Nombre de máquina]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="Nombre de máquina"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre de máquina]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Nombre de usuario]"
+                      cachedDataType="wstr"
+                      cachedLength="64"
+                      cachedName="Nombre de usuario"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre de usuario]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Nombre de tarea]"
+                      cachedDataType="wstr"
+                      cachedLength="64"
+                      cachedName="Nombre de tarea"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre de tarea]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombre del paquete]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombre del paquete]"
+                      name="Copy of Nombre del paquete"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre del paquete]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Hora de inicio de ejecución]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Hora de inicio de ejecución]"
+                      name="Copy of Hora de inicio de ejecución"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Hora de inicio de ejecución]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombre de máquina]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombre de máquina]"
+                      name="Copy of Nombre de máquina"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre de máquina]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombre de usuario]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombre de usuario]"
+                      name="Copy of Nombre de usuario"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre de usuario]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombre de tarea]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombre de tarea]"
+                      name="Copy of Nombre de tarea"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1].Columns[Nombre de tarea]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Auditar y copiar columna Tarea Flujo de datos\Copiar columna"
+              componentClassID="Microsoft.CopyMap"
+              contactInfo="Copiar columna;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Copia columnas de entrada en nuevas columnas de la salida de transformación. Por ejemplo, se crea una copia de la columna 'dirección' de modo que se pueda limpiar en transformaciones subsiguientes y se mantiene la columna original para las auditorías."
+              name="Copiar columna">
+              <inputs>
+                <input
+                  refId="Package\Auditar y copiar columna Tarea Flujo de datos\Copiar columna.Inputs[Entrada de Copiar columna]"
+                  name="Entrada de Copiar columna">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Copiar columna.Inputs[Entrada de Copiar columna].Columns[PromotionKey]"
+                      cachedDataType="i4"
+                      cachedName="PromotionKey"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[PromotionKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Auditar y copiar columna Tarea Flujo de datos\Copiar columna.Outputs[Salida de Copiar columna]"
+                  name="Salida de Copiar columna"
+                  synchronousInputId="Package\Auditar y copiar columna Tarea Flujo de datos\Copiar columna.Inputs[Entrada de Copiar columna]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Copiar columna.Outputs[Salida de Copiar columna].Columns[Copy of PromotionKey]"
+                      dataType="i4"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Copiar columna.Outputs[Salida de Copiar columna].Columns[Copy of PromotionKey]"
+                      name="Copy of PromotionKey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna para copiar."
+                          name="copyColumnId">#{Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[PromotionKey]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino de OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[Promocion]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.STREAMING]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.STREAMING]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copy of PromotionKey]"
+                      cachedDataType="i4"
+                      cachedName="Copy of PromotionKey"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[PromocionID]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Copiar columna.Outputs[Salida de Copiar columna].Columns[Copy of PromotionKey]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SpanishPromotionName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SpanishPromotionName"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NombrePromocion]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SpanishPromotionName]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[DiscountPct]"
+                      cachedDataType="r8"
+                      cachedName="DiscountPct"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[PorcentajeDescuento]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[DiscountPct]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SpanishPromotionType]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="SpanishPromotionType"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoPromocion]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SpanishPromotionType]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SpanishPromotionCategory]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="SpanishPromotionCategory"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CategoriaPromocion]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SpanishPromotionCategory]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[MinQty]"
+                      cachedDataType="i4"
+                      cachedName="MinQty"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CantidadMinima]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[MinQty]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[MaxQty]"
+                      cachedDataType="i4"
+                      cachedName="MaxQty"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CantidadMaxima]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[MaxQty]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copy of Nombre del paquete]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Copy of Nombre del paquete"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NombrePaquete]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombre del paquete]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copy of Hora de inicio de ejecución]"
+                      cachedDataType="date"
+                      cachedName="Copy of Hora de inicio de ejecución"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[HoraEjecucion]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Hora de inicio de ejecución]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copy of Nombre de máquina]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Copy of Nombre de máquina"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NombreMaquina]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombre de máquina]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copy of Nombre de usuario]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Copy of Nombre de usuario"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NombreUsuario]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombre de usuario]" />
+                    <inputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copy of Nombre de tarea]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of Nombre de tarea"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NombreTarea]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of Nombre de tarea]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[PromocionID]"
+                      dataType="i4"
+                      name="PromocionID" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NombrePromocion]"
+                      dataType="wstr"
+                      length="255"
+                      name="NombrePromocion" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[PorcentajeDescuento]"
+                      dataType="r8"
+                      name="PorcentajeDescuento" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoPromocion]"
+                      dataType="wstr"
+                      length="50"
+                      name="TipoPromocion" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CategoriaPromocion]"
+                      dataType="wstr"
+                      length="50"
+                      name="CategoriaPromocion" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CantidadMinima]"
+                      dataType="i4"
+                      name="CantidadMinima" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CantidadMaxima]"
+                      dataType="i4"
+                      name="CantidadMaxima" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NombrePaquete]"
+                      dataType="wstr"
+                      length="100"
+                      name="NombrePaquete" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[HoraEjecucion]"
+                      dataType="dbTimeStamp"
+                      name="HoraEjecucion" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NombreMaquina]"
+                      dataType="wstr"
+                      length="100"
+                      name="NombreMaquina" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NombreUsuario]"
+                      dataType="wstr"
+                      length="100"
+                      name="NombreUsuario" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NombreTarea]"
+                      dataType="wstr"
+                      length="50"
+                      name="NombreTarea" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="Origen de OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT TOP (10) 
+	   [PromotionKey]
+      ,[SpanishPromotionName]
+      ,[DiscountPct]
+      ,[SpanishPromotionType]
+      ,[SpanishPromotionCategory]
+      ,[MinQty]
+      ,[MaxQty]
+FROM [AdventureWorksDW2016].[dbo].[DimPromotion]</property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.AdventureWorksDW2016]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.AdventureWorksDW2016]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[PromotionKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[PromotionKey]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[PromotionKey]"
+                      name="PromotionKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SpanishPromotionName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[SpanishPromotionName]"
+                      length="255"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SpanishPromotionName]"
+                      name="SpanishPromotionName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[DiscountPct]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[DiscountPct]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[DiscountPct]"
+                      name="DiscountPct"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SpanishPromotionType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[SpanishPromotionType]"
+                      length="50"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SpanishPromotionType]"
+                      name="SpanishPromotionType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SpanishPromotionCategory]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[SpanishPromotionCategory]"
+                      length="50"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SpanishPromotionCategory]"
+                      name="SpanishPromotionCategory"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[MinQty]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[MinQty]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[MinQty]"
+                      name="MinQty"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[MaxQty]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[MaxQty]"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[MaxQty]"
+                      name="MaxQty"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[PromotionKey]"
+                      dataType="i4"
+                      name="PromotionKey" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[SpanishPromotionName]"
+                      dataType="wstr"
+                      length="255"
+                      name="SpanishPromotionName" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[DiscountPct]"
+                      dataType="r8"
+                      name="DiscountPct" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[SpanishPromotionType]"
+                      dataType="wstr"
+                      length="50"
+                      name="SpanishPromotionType" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[SpanishPromotionCategory]"
+                      dataType="wstr"
+                      length="50"
+                      name="SpanishPromotionCategory" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[MinQty]"
+                      dataType="i4"
+                      name="MinQty" />
+                    <externalMetadataColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[MaxQty]"
+                      dataType="i4"
+                      name="MaxQty" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[PromotionKey]"
+                      dataType="i4"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[PromotionKey]"
+                      name="PromotionKey" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[SpanishPromotionName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[SpanishPromotionName]"
+                      name="SpanishPromotionName" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[DiscountPct]"
+                      dataType="r8"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[DiscountPct]"
+                      name="DiscountPct" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[SpanishPromotionType]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[SpanishPromotionType]"
+                      name="SpanishPromotionType" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[SpanishPromotionCategory]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[SpanishPromotionCategory]"
+                      name="SpanishPromotionCategory" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[MinQty]"
+                      dataType="i4"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[MinQty]"
+                      name="MinQty" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[MaxQty]"
+                      dataType="i4"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[MaxQty]"
+                      name="MaxQty" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Auditar y copiar columna Tarea Flujo de datos.Paths[Salida de Auditar 1]"
+              endId="Package\Auditar y copiar columna Tarea Flujo de datos\Copiar columna.Inputs[Entrada de Copiar columna]"
+              name="Salida de Auditar 1"
+              startId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Outputs[Salida de Auditar 1]" />
+            <path
+              refId="Package\Auditar y copiar columna Tarea Flujo de datos.Paths[Salida de conversión de datos]"
+              endId="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de conversión de datos"
+              startId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Auditar y copiar columna Tarea Flujo de datos.Paths[Salida de Copiar columna]"
+              endId="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos.Inputs[Entrada de conversión de datos]"
+              name="Salida de Copiar columna"
+              startId="Package\Auditar y copiar columna Tarea Flujo de datos\Copiar columna.Outputs[Salida de Copiar columna]" />
+            <path
+              refId="Package\Auditar y copiar columna Tarea Flujo de datos.Paths[Salida de origen de OLE DB]"
+              endId="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar.Inputs[Entrada de Auditar 1]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB.Outputs[Salida de origen de OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="303,42"
+          Id="Package\Auditar y copiar columna Tarea Flujo de datos"
+          TopLeft="225,61" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Auditar y copiar columna Tarea Flujo de datos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB"
+          TopLeft="258,20" />
+        <NodeLayout
+          Size="114,42"
+          Id="Package\Auditar y copiar columna Tarea Flujo de datos\Auditar"
+          TopLeft="274,110" />
+        <EdgeLayout
+          Id="Package\Auditar y copiar columna Tarea Flujo de datos.Paths[Salida de origen de OLE DB]"
+          TopLeft="343,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12,48"
+              Start="0,0"
+              End="-12,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="-4,24" />
+                  <mssgle:LineSegment
+                    End="-8,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8,24"
+                    Point2="-12,24"
+                    Point3="-12,28" />
+                  <mssgle:LineSegment
+                    End="-12,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Auditar y copiar columna Tarea Flujo de datos\Copiar columna"
+          TopLeft="260,193" />
+        <EdgeLayout
+          Id="Package\Auditar y copiar columna Tarea Flujo de datos.Paths[Salida de Auditar 1]"
+          TopLeft="334.5,152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Auditar y copiar columna Tarea Flujo de datos\Conversión de datos"
+          TopLeft="297,272" />
+        <EdgeLayout
+          Id="Package\Auditar y copiar columna Tarea Flujo de datos.Paths[Salida de Copiar columna]"
+          TopLeft="338,235">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="49,37"
+              Start="0,0"
+              End="49,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.5"
+                    Point2="0,18.5"
+                    Point3="4,18.5" />
+                  <mssgle:LineSegment
+                    End="45,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="45,18.5"
+                    Point2="49,18.5"
+                    Point3="49,22.5" />
+                  <mssgle:LineSegment
+                    End="49,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB"
+          TopLeft="288,362" />
+        <EdgeLayout
+          Id="Package\Auditar y copiar columna Tarea Flujo de datos.Paths[Salida de conversión de datos]"
+          TopLeft="387,314">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.5,48"
+              Start="0,0"
+              End="-11.5,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="-4,24" />
+                  <mssgle:LineSegment
+                    End="-7.5,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.5,24"
+                    Point2="-11.5,24"
+                    Point3="-11.5,28" />
+                  <mssgle:LineSegment
+                    End="-11.5,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Auditar y copiar columna Tarea Flujo de datos\Origen de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Auditar y copiar columna Tarea Flujo de datos\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
